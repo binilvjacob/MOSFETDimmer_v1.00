@@ -135,10 +135,10 @@ ROM Allocation:
 035F  rr
 
 Project Directory:
-    D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - modified retransmision - for testing\
+    D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - beta v1.01\
 
 Project Files:
-    slave.c                                                 [30-Apr-22 22:42  CRC=B366E0A6]
+    slave.c                                                 [30-Apr-22 22:54  CRC=3A86EFB4]
     slave.h                                                 [30-Apr-22 22:35  CRC=C9FA00A4]
     C:\Program Files (x86)\PICC\devices\16F684.h            [12-Nov-13 14:34  CRC=6B043C92]
     C:\Program Files (x86)\PICC\drivers\math.h              [28-Sep-12 11:35  CRC=546412C9]
@@ -147,7 +147,7 @@ Project Files:
     C:\Program Files (x86)\PICC\drivers\string.h            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\drivers\ctype.h             [03-Jan-08 13:55  CRC=2D1F019F]
 
-Source signature=4FD876AD
+Source signature=D6F885BB
 
 Units:
     slave (main)

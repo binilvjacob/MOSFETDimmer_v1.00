@@ -1,6 +1,6 @@
-CCS PCM C Compiler, Version 5.015, 5967               30-Apr-22 22:42
+CCS PCM C Compiler, Version 5.015, 5967               30-Apr-22 22:54
 
-               Filename:   D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - modified retransmision - for testing\slave.lst
+               Filename:   D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - beta v1.01\slave.lst
 
                ROM used:   1876 words (92%)
                            Largest free fragment is 172
@@ -91,7 +91,7 @@ CCS PCM C Compiler, Version 5.015, 5967               30-Apr-22 22:42
 .................... 	-> DALI Rx pin : PIN_A2 
 .................... 	-> Version : BETA 
 .................... 	-> Last modified date : 30/04/2022     
-.................... 	-> Github repo URL :   
+.................... 	-> Github repo URL :  . 
 ....................  
 .................... */ 
 ....................   
