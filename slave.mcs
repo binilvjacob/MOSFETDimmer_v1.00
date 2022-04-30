@@ -41,6 +41,9 @@ ToolArgsString=
 TraceCmdString=
 DebugOptions=
 [File003]
+Location=D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - beta v1.01\slave.o
+Folder=Intermediary
+[File004]
 Location=C:\LiHome\home automation codes\nisar house\SLAVE 684 - modified retransmision\slave.HEX
 Folder=Output
 DeviceName=
@@ -53,7 +56,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File004]
+[File005]
 Location=C:\LiHome\home automation codes\nisar house\SLAVE 684 - modified retransmision\slave.LST
 Folder=Output
 DeviceName=
@@ -66,7 +69,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File005]
+[File006]
 Location=C:\LiHome\home automation codes\nisar house\SLAVE 684 - modified retransmision\slave.ERR
 Folder=Output
 DeviceName=
@@ -79,7 +82,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File006]
+[File007]
 Location=C:\LiHome\home automation codes\nisar house\SLAVE 684 - modified retransmision\slave.COF
 Folder=Output
 DeviceName=
@@ -92,7 +95,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File007]
+[File008]
 Location=slave.HEX
 Folder=Output
 DeviceName=
@@ -105,7 +108,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File008]
+[File009]
 Location=slave.LST
 Folder=Output
 DeviceName=
@@ -118,7 +121,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File009]
+[File010]
 Location=slave.ERR
 Folder=Output
 DeviceName=
@@ -131,7 +134,7 @@ SuiteArgsString=
 ToolArgsString=
 TraceCmdString=
 DebugOptions=
-[File010]
+[File011]
 Location=slave.COF
 Folder=Output
 DeviceName=

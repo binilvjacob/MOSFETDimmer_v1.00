@@ -15,7 +15,7 @@
 	-> DALI Rx pin : PIN_A2
 	-> Version : BETA
 	-> Last modified date : 30/04/2022    
-	-> Github repo URL :  
+	-> Github repo URL :  .
 
 */
  
