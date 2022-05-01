@@ -1,4 +1,4 @@
-CCS PCM C Compiler, Version 5.015, 5967               01-May-22 21:54
+CCS PCM C Compiler, Version 5.015, 5967               01-May-22 21:57
 
                Filename:   D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - beta v1.01\slave.lst
 
@@ -91,7 +91,7 @@ CCS PCM C Compiler, Version 5.015, 5967               01-May-22 21:54
 .................... 	-> DALI Rx pin : PIN_A2 
 .................... 	-> Version : BETA 
 .................... 	-> Last modified date : 30/04/2022     
-.................... 	-> Github repo URL :  . 
+.................... 	-> Github repo URL :  https://github.com/binilvjacob/v1.0DALIDimmableDriverPIC16F684CCSCode.git 
 ....................  
 .................... */ 
 ....................   
