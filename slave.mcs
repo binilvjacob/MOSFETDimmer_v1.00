@@ -43,6 +43,16 @@ DebugOptions=
 [File003]
 Location=D:\namami-li\LiHome\MOSFET DRIVER pic code\SLAVE 684 - beta v1.01\slave.o
 Folder=Intermediary
+DeviceName=
+LanguageToolSuiteID=
+LanguageToolID=
+LanguageToolLocation=
+PPAD=
+SOLK=
+SuiteArgsString=
+ToolArgsString=
+TraceCmdString=
+DebugOptions=
 [File004]
 Location=C:\LiHome\home automation codes\nisar house\SLAVE 684 - modified retransmision\slave.HEX
 Folder=Output

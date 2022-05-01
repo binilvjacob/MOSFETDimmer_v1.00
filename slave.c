@@ -28,8 +28,8 @@
 
 #define device_type 7  				// setting device type 7 - MOSFET dimamble driver
 
-#define Fixlampid   10 				// LAMP ADDRESS //
-#define zoneid_init   212 			// zone address // 
+#define Fixlampid   1 				// LAMP ADDRESS //
+#define zoneid_init   210 			// zone address // 
 #define G1 0b00000001
 #define G2 0b00000000
 #define rx pin_a2
@@ -50,6 +50,7 @@
 #define SceneStore  				6			// 6-21 Scene level store
 #define ZoneIDStore 				32
 #define SystemFailureRateStore 		25
+#define CurrentThresholdStore 		26			// To store current protection threshold value
 
 ////////////////// Device types ////////////////////////
 /*
@@ -109,6 +110,7 @@ int1 reset_flag=0;			// For WDT reset operation inside RTCC interrupt
 int32 restart_count=0;
 int32 restart_delay=0;
 char failure_count=0;
+char current_threshold=1;
 
 void readData(void);
 void init(void);
@@ -329,7 +331,7 @@ void init(void)
 	setup_timer_2(T2_DIV_BY_1,249,1);		//250 us overflow, 250 us interrupt  // 4000Hz
 	setup_ccp1(CCP_PWM|CCP_SHUTDOWN_ON_COMP2|CCP_SHUTDOWN_AC_L|CCP_SHUTDOWN_BD_L);	// Setting up PWM
 	setup_comparator(A0_VR_C0_VR);				// Setting up comparator
-	setup_vref(VREF_LOW|1);						// Setting up reference voltage
+	setup_vref(VREF_LOW|current_threshold);						// Setting up reference voltage
 	PRSEN=0;									// Auto-restart disabled
 	CCMCON0=1;									// Comparator output inverted
 
@@ -752,7 +754,6 @@ void commands(void)
 		 }
 		case 231:  // store sceen 
 		{
-
 			if(databyte < 17)
 			{				
 				disable_interrupts (global);
@@ -836,35 +837,35 @@ void commands(void)
 				}	
 				break;				
 		}
-		case 39:							// Query current device power level
+		case 39:	// Query current device power level
 		{
 			tx_buffer[2]=lampid;tx_buffer[1]=Read_eeprom(0); 
 	    	txmit(2,2);		
 			break;
 
 		}
-		case 49: //////////////// case for device type query /////////////////
+		case 49: 	// case for device type query
 		{
 			tx_buffer[2]=lampid;tx_buffer[1]=device_type; 
 			txmit(2,2);			
 			break;
 
 		}
-		case 50: //////////////// case for first group secion query /////////////////
+		case 50: 	// case for first group secion query 
 		{
 			tx_buffer[2]=lampid;tx_buffer[1]=Read_eeprom(7); 
 			txmit(2,2);			
 			break;
 
 		}
-		case 51: //////////////// case for second group secion query /////////////////
+		case 51: 	// case for second group secion query 
 		{
 			tx_buffer[2]=lampid;tx_buffer[1]=Read_eeprom(8); 
 			txmit(2,2);			
 			break;
 
 		}
-		case 42: //////////////// setting max level /////////////////
+		case 42: 	// setting max level 
 		{
 			MaximumLevel=databyte;
 			write_eeprom(MaximumLevelStore,MaximumLevel);
@@ -872,14 +873,14 @@ void commands(void)
 			break;
 
 		}
-		case 43: //////////////// setting min level /////////////////
+		case 43: 	// setting min level 
 		{
 			MinimumLevel=databyte;
 			write_eeprom(MinimumLevelStore,MinimumLevel);
 			delay_us(10);		
 			break;
 		}
-		case 48:		// PWM Restart operation		// USE WITH CARE		
+		case 48:	// PWM Restart operation			
 		{
 			ECCPASE=0;		
 			break;
@@ -890,7 +891,12 @@ void commands(void)
 			txmit(2,2);
 			break;
 		}
-
+		case 53:	// Set current protection threshold value
+		{
+			current_threshold=databyte;
+			write_eeprom(CurrentThresholdStore,current_threshold);
+			delay_us(10);
+		}
 		default:
 		{
 			command_st=1;
@@ -968,6 +974,8 @@ delay_us(10);
 zoneid=read_EEPROM(zoneidstore);
 delay_us(10);
 failure_count=read_EEPROM(SystemFailureRateStore);
+delay_us(10);
+current_threshold=read_EEPROM(CurrentThresholdStore);
 delay_us(10);
 }
 

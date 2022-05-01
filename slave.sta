@@ -1,19 +1,19 @@
 
-ROM used:   1876/2048 (92%)
-            1876/2048 (92%) including unused fragments
+ROM used:   1928/2048 (94%)
+            1928/2048 (94%) including unused fragments
 
             0.3 Average locations per line
             1.5 Average locations per statement
 
-RAM used:   70/128 (55%) at main() level
-            87/128 (68%) worst case
+RAM used:   71/128 (55%) at main() level
+            88/128 (69%) worst case
 
 Stack used: 5 worst case (3 in main + 2 for interrupts)
 Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  975   530  42  slave.c
+  983   536  42  slave.c
    17     0   0  slave.h
   619     0   0  C:\Program Files (x86)\PICC\devices\16F684.h
  2229   257  20  C:\Program Files (x86)\PICC\drivers\math.h
@@ -22,7 +22,7 @@ Lines Stmts  %   Files
   423   125  10  C:\Program Files (x86)\PICC\drivers\string.h
    28     0   0  C:\Program Files (x86)\PICC\drivers\ctype.h
 ----- -----
- 5674  1271 Total
+ 5682  1277 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -30,41 +30,41 @@ Page ROM  %  RAM   Vol Diff  Functions:
  Inline         1             @delay_ms2
  Inline         1             @delay_us2
 0     25   1    0   393  3.3  EXT_isr
-0    200  11    1   764  6.7  TIMER1_isr
+0    200  10    1   764  6.7  TIMER1_isr
 0     35   2    1   197  4.9  RTCC_isr
-0    295  16    2  1762  9.3  MAIN
-0     61   3    0   507  3.3  init
-0    708  38    0    59  1.9  handle
+0    297  15    2  1762  9.3  MAIN
+0     63   3    1   507  3.3  init
+0    742  38    0    59  1.9  handle
 0     83   4    1   759  4.3  txmit1
  Inline         1   576  4.8  txmit0
 0    111   6    3   643  8.3  txmit
 0     29   2    1    56  1.9  stopbit
  Inline         2  2181  8.4  readData
 0     27   1    0   444  4.3  copyData
- Inline         2  5577 11.9  commands
+ Inline         2  5752 11.9  commands
 0      6   0    0    42  1.7  lamp_on
 0      4   0    0    42  1.7  lamp_off
 0     76   4    1   412  4.7  SetDimmLevel
-0    110   6    2   436  2.4  init_from_eeprom
+0    124   6    2   505  2.4  init_from_eeprom
  Inline         0             @cinit1
 
 Program metrics:
     Functions               17
-    Statements              1271
-    Comments                1411
-    Volume (V)              22199
+    Statements              1277
+    Comments                1412
+    Volume (V)              22520
     Difficulty (D)          86.0
-    Effort to implement (E) 1908303
-    Time to implement (T)   29 hours, 27 minutes
+    Effort to implement (E) 1936952
+    Time to implement (T)   29 hours, 53 minutes
     Est Delivered Bugs (B)  5
-    Cyclomatic Complexity   90
-    Maintainability (MI)    113
+    Cyclomatic Complexity   91
+    Maintainability (MI)    112
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
 00004-0003F    60  0  
-00040-007FF  1812  172  
+00040-007FF  1864  120  
 
 
 
