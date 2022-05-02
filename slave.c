@@ -15,7 +15,7 @@
 	-> DALI Rx pin : PIN_A2
 	-> Version : BETA
 	-> Last modified date : 30/04/2022    
-	-> Github repo URL :  https://github.com/binilvjacob/v1.0DALIDimmableDriverPIC16F684CCSCode.git
+	-> Github repo URL :  https://github.com/binilvjacob/MOSFETDimmer_v1.00
 
 */
  
@@ -28,8 +28,8 @@
 
 #define device_type 7  				// setting device type 7 - MOSFET dimamble driver
 
-#define Fixlampid   1 				// LAMP ADDRESS //
-#define zoneid_init   210 			// zone address // 
+#define Fixlampid   9 				// LAMP ADDRESS //
+#define zoneid_init   212 			// zone address // 
 #define G1 0b00000001
 #define G2 0b00000000
 #define rx pin_a2
@@ -48,9 +48,9 @@
 #define Group_07Store    			4			// First byte of group
 #define Group_815Store  			5			// Second byte of group
 #define SceneStore  				6			// 6-21 Scene level store
-#define ZoneIDStore 				32
-#define SystemFailureRateStore 		25
-#define CurrentThresholdStore 		26			// To store current protection threshold value
+#define ZoneIDStore 				32			// Zone ID
+#define SystemFailureRateStore 		33			// Number of times over current shutdown was detected
+#define CurrentThresholdStore 		34			// To store current protection threshold value
 
 ////////////////// Device types ////////////////////////
 /*
@@ -95,7 +95,6 @@ char gindex;
 
 /////// new  //////
 int txmit_count=0;
-int error_value=0;
 ///////////////////
 
 char MinimumLevel;
@@ -130,7 +129,7 @@ void SetDimmLevel(unsigned int dimPesentage);
 
 #rom  0x2100={MaxDuty,MinDuty,MaxDuty,Fixlampid,G1,G2,0,20,30,50,70,90,100,35,40,45,75,25,60,65,95,100}
 
-#rom  0x2120={zoneid_init}
+#rom  0x2120={zoneid_init,0,1}
 
 #int_EXT
 EXT_isr() 
@@ -150,6 +149,7 @@ EXT_isr()
             tout=0 ;
             datacount = 0;   
 			settling_time = 0; 
+			return(0);
 }
 
 
@@ -233,6 +233,7 @@ RTCC_isr()
 		{
 			restart_delay--;
 		}
+	return(0);
 }
 
 
@@ -331,6 +332,10 @@ void init(void)
 	setup_timer_2(T2_DIV_BY_1,249,1);		//250 us overflow, 250 us interrupt  // 4000Hz
 	setup_ccp1(CCP_PWM|CCP_SHUTDOWN_ON_COMP2|CCP_SHUTDOWN_AC_L|CCP_SHUTDOWN_BD_L);	// Setting up PWM
 	setup_comparator(A0_VR_C0_VR);				// Setting up comparator
+	if(current_threshold>15 || current_threshold <1)
+	{
+		current_threshold=1;
+	}
 	setup_vref(VREF_LOW|current_threshold);						// Setting up reference voltage
 	PRSEN=0;									// Auto-restart disabled
 	CCMCON0=1;									// Comparator output inverted
@@ -793,7 +798,7 @@ void commands(void)
 				}
 				break ;
 		}
-		case 34:    // store  short  aress 
+		case 34:    // write idividiual device id alias short address 
 		{
 			if(databyte <64)
 			{
@@ -844,13 +849,18 @@ void commands(void)
 			break;
 
 		}
-		case 49: 	// case for device type query
+		case 49: // case for setting zoneID 
 		{
-			tx_buffer[2]=lampid;tx_buffer[1]=device_type; 
-			txmit(2,2);			
+			if(databyte >=208 && databyte <=223)
+			{
+					zoneid = databyte;
+					write_eeprom(ZoneIDStore ,zoneid);
+					delay_us(10);
+			}		
 			break;
 
 		}
+		
 		case 50: 	// case for first group secion query 
 		{
 			tx_buffer[2]=lampid;tx_buffer[1]=Read_eeprom(7); 
@@ -895,6 +905,12 @@ void commands(void)
 		{
 			current_threshold=databyte;
 			write_eeprom(CurrentThresholdStore,current_threshold);
+			delay_us(10);
+		}
+		case 54:	// Read current protection threshold value
+		{
+			tx_buffer[2]=lampid;tx_buffer[1]=Read_eeprom(CurrentThresholdStore); 
+			txmit(2,2);
 			delay_us(10);
 		}
 		default:
